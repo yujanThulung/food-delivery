@@ -5,9 +5,14 @@ import { food_list } from '../../assets/assets';
 
 const Cart = () => {
 
-  const { cartItems, foodList, removeFromCart } = useContext(StoreContext)
+  const { cartItems, foodList, removeFromCart, getTotalCartAmount } = useContext(StoreContext);
+
+  // const deliveryCost = () => {
+  //   return getTotalCartAmount() > 0 ? 2 : 0;
+  // }
 
 
+  const deliveryCost = getTotalCartAmount()>0?2:0;
 
   return (
     <div className='cart'>
@@ -48,17 +53,17 @@ const Cart = () => {
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${0}</p>
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery</p>
-              <p>${0}</p>
+              <p>${deliveryCost}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${0}</b>
+              <b>${getTotalCartAmount() + deliveryCost}</b>
             </div>
           </div>
           <button>PROCEED TO CHECKOUT</button>
